@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+
+  # ─── Base de Datos MySQL ───────────────────────────────
+  db:
+    image: mysql:8.0
+    container_name: despacho-db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      # Named volume: los datos persisten aunque el contenedor se reinicie
+      - dbdata:/var/lib/mysql
+    networks:
+      - backend-net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ─── Backend Spring Boot ───────────────────────────────
+  backend:
+    build: .
+    container_name: despacho-backend
+    environment:
+      DB_ENDPOINT: db
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "8081:8081"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - backend-net
+    restart: unless-stopped
+
+networks:
+  backend-net:
+    driver: bridge
+
+volumes:
+  # Named volume elegido sobre bind mount porque:
+  # - Docker gestiona la ubicación automáticamente
+  # - Mayor portabilidad entre entornos (local, EC2)
+  # - No depende de rutas del sistema operativo host
+  dbdata:
