@@ -75,3 +75,4 @@ El pipeline `.github/workflows/deploy-backend.yml` se activa con push en la rama
 | DB_NAME | Nombre de la base de datos |
 | DB_USERNAME | Usuario de la base de datos |
 | DB_PASSWORD | Contraseña de la base de datos |
+"# deploy trigger" 
