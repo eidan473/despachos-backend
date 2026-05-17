@@ -79,3 +79,4 @@ El pipeline `.github/workflows/deploy-backend.yml` se activa con push en la rama
 "# redeploy" 
 "# fix db endpoint" 
 "# fix mysql bind" 
+"# fix docker host ip" 
