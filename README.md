@@ -78,3 +78,4 @@ El pipeline `.github/workflows/deploy-backend.yml` se activa con push en la rama
 "# deploy trigger" 
 "# redeploy" 
 "# fix db endpoint" 
+"# fix mysql bind" 
