@@ -85,3 +85,4 @@ El pipeline `.github/workflows/deploy-backend.yml` se activa con push en la rama
 "# retrigger" 
 "# retrigger" 
 "# retrigger2" 
+"# nueva EC2 backend" 
