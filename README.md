@@ -82,3 +82,4 @@ El pipeline `.github/workflows/deploy-backend.yml` se activa con push en la rama
 "# fix docker host ip" 
 "# test desde nuevo pc" 
 "# retrigger" 
+"# retrigger" 
