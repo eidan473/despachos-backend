@@ -80,3 +80,4 @@ El pipeline `.github/workflows/deploy-backend.yml` se activa con push en la rama
 "# fix db endpoint" 
 "# fix mysql bind" 
 "# fix docker host ip" 
+"# test desde nuevo pc" 
